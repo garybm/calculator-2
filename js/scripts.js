@@ -32,3 +32,31 @@ alert(result3);
 alert(result4);
 alert(result5);
 */
+
+$(function(){
+
+  $("td").click(function() {
+    $('#display').text($('#display').text() + $(this).text());
+
+    if ( $(this).text() === '=') {
+      let text = $('#display').text()
+      let length = text.length;
+
+      let op = '';     //operator
+      let left = '';   //left number
+      let right = '';  //right number
+
+      // Identify the operator
+      for(let i=0; i<length; ++i) {
+        if(text.charAt(i)==='*' || text.charAt(i)==='/' || text.charAt(i)==='+' || text.charAt(i)==='-') {
+          op = text.charAt(i);
+          left = text.slice(0, i-1);
+          right = text.slice(i);
+
+        }
+      }
+    }
+
+  });
+
+});
