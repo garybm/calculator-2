@@ -38,6 +38,10 @@ $(function(){
   $("td").click(function() {
     $('#display').text($('#display').text() + $(this).text());
 
+    if ( $(this).text() === 'C') {
+      $('#display').text('');
+    }
+
     if ( $(this).text() === '=') {
       let text = $('#display').text()
       let length = text.length;
@@ -50,11 +54,36 @@ $(function(){
       for(let i=0; i<length; ++i) {
         if(text.charAt(i)==='*' || text.charAt(i)==='/' || text.charAt(i)==='+' || text.charAt(i)==='-') {
           op = text.charAt(i);
-          left = text.slice(0, i-1);
-          right = text.slice(i);
-
+          left = text.slice(0, i);
+          right = text.slice(i+1);
         }
       }
+
+      left = parseInt(left);
+      right = parseInt(right);
+
+      console.log(op);
+      console.log(left);
+      console.log(right);
+
+      switch(op) {
+        case "+":
+          $('#display').text(left+right);
+          break;
+        case "-":
+          $('#display').text(left-right);
+          break;
+        case "*":
+          $('#display').text(left*right);
+          break;
+
+        case "/":
+          $('#display').text(left/right);
+          break;
+
+        }
+
+
     }
 
   });
